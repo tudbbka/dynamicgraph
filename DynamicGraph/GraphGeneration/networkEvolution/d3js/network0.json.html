@@ -1,0 +1,69 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>Time 0
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+
+ <script src="network0.json_files/d3.js"></script>
+
+    <script>
+
+var width = 1200,
+    height = 600;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+ d3.json("network0.json", function(error, graph) {  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 5)
+      .style("fill", function(d) { return color(d.group); })
+      .call(force.drag);
+
+  node.append("title")
+      .text(function(d) { return d.name; });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+});
+
+</script><svg width="1200" height="600"><line y2="450.23948328191614" x2="332.64411615847945" y1="437.1135698663754" x1="363.67369495698506" style="" class="link"></line><line y2="417.5568730486872" x2="332.9618310843629" y1="437.1135698663754" x1="363.67369495698506" style="" class="link"></line><line y2="357.1048219269072" x2="420.7033923502205" y1="301.7265836121329" x1="415.433888783972" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="301.7265836121329" x1="415.433888783972" style="" class="link"></line><line y2="372.53036326967265" x2="458.97424156329174" y1="357.1048219269072" x1="420.7033923502205" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="225.06717303637407" x1="474.31250793546167" style="" class="link"></line><line y2="249.84562941120126" x2="491.2116161505519" y1="225.06717303637407" x1="474.31250793546167" style="" class="link"></line><line y2="417.5568730486872" x2="332.9618310843629" y1="450.23948328191614" x1="332.64411615847945" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="249.84562941120126" x1="491.2116161505519" style="" class="link"></line><line y2="372.53036326967265" x2="458.97424156329174" y1="330.5684829162105" x1="442.3196102118914" style="" class="link"></line><line y2="280.2326924556734" x2="426.69206859384013" y1="330.5684829162105" x1="442.3196102118914" style="" class="link"></line><line y2="250.53407109418407" x2="281.92690985782417" y1="223.91071228317062" x1="284.56506953234066" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="223.91071228317062" x1="284.56506953234066" style="" class="link"></line><line y2="220.46857978735366" x2="309.1570041377861" y1="223.91071228317062" x1="284.56506953234066" style="" class="link"></line><line y2="355.7111492173187" x2="497.6997091504309" y1="372.53036326967265" x1="458.97424156329174" style="" class="link"></line><line y2="282.9565406338392" x2="327.0492492226791" y1="281.165798647713" x1="358.1718268042385" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="281.165798647713" x1="358.1718268042385" style="" class="link"></line><line y2="273.3367429934316" x2="407.2166276248844" y1="281.165798647713" x1="358.1718268042385" style="" class="link"></line><line y2="208.2831040072831" x2="386.43612198356493" y1="231.69597216446732" x1="359.22844236407167" style="" class="link"></line><line y2="202.53814765836069" x2="408.482617559413" y1="231.69597216446732" x1="359.22844236407167" style="" class="link"></line><line y2="282.9565406338392" x2="327.0492492226791" y1="231.69597216446732" x1="359.22844236407167" style="" class="link"></line><line y2="334.2829922117852" x2="512.0361665552143" y1="365.17613902454286" x1="531.9632538150457" style="" class="link"></line><line y2="355.7111492173187" x2="497.6997091504309" y1="365.17613902454286" x1="531.9632538150457" style="" class="link"></line><line y2="328.51258577072736" x2="533.2600889494781" y1="365.17613902454286" x1="531.9632538150457" style="" class="link"></line><line y2="282.9565406338392" x2="327.0492492226791" y1="303.34023110057694" x1="304.95168484035366" style="" class="link"></line><line y2="281.088320049427" x2="288.30992097034306" y1="303.34023110057694" x1="304.95168484035366" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="303.34023110057694" x1="304.95168484035366" style="" class="link"></line><line y2="250.53407109418407" x2="281.92690985782417" y1="220.46857978735366" x1="309.1570041377861" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="220.46857978735366" x1="309.1570041377861" style="" class="link"></line><line y2="202.53814765836069" x2="408.482617559413" y1="208.2831040072831" x1="386.43612198356493" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="208.2831040072831" x1="386.43612198356493" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="202.53814765836069" x1="408.482617559413" style="" class="link"></line><line y2="355.7111492173187" x2="497.6997091504309" y1="334.2829922117852" x1="512.0361665552143" style="" class="link"></line><line y2="306.4298910399359" x2="491.4805359203696" y1="334.2829922117852" x1="512.0361665552143" style="" class="link"></line><line y2="328.51258577072736" x2="533.2600889494781" y1="334.2829922117852" x1="512.0361665552143" style="" class="link"></line><line y2="256.6008755974957" x2="387.915323755394" y1="280.2326924556734" x1="426.69206859384013" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="280.2326924556734" x1="426.69206859384013" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="280.2326924556734" x1="426.69206859384013" style="" class="link"></line><line y2="355.7111492173187" x2="497.6997091504309" y1="306.4298910399359" x1="491.4805359203696" style="" class="link"></line><line y2="328.51258577072736" x2="533.2600889494781" y1="306.4298910399359" x1="491.4805359203696" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="306.4298910399359" x1="491.4805359203696" style="" class="link"></line><line y2="250.53407109418407" x2="281.92690985782417" y1="281.088320049427" x1="288.30992097034306" style="" class="link"></line><line y2="282.9565406338392" x2="327.0492492226791" y1="281.088320049427" x1="288.30992097034306" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="281.088320049427" x1="288.30992097034306" style="" class="link"></line><line y2="355.7111492173187" x2="497.6997091504309" y1="328.51258577072736" x1="533.2600889494781" style="" class="link"></line><line y2="256.6008755974957" x2="387.915323755394" y1="273.3367429934316" x1="407.2166276248844" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="273.3367429934316" x1="407.2166276248844" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="273.3367429934316" x1="407.2166276248844" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="250.53407109418407" x1="281.92690985782417" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="282.9565406338392" x1="327.0492492226791" style="" class="link"></line><line y2="240.99253498377522" x2="420.03563046129335" y1="256.6008755974957" x1="387.915323755394" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="256.6008755974957" x1="387.915323755394" style="" class="link"></line><line y2="256.30840014724583" x2="322.3263247547644" y1="256.6008755974957" x1="387.915323755394" style="" class="link"></line><line y2="262.0991910209432" x2="449.86358307052495" y1="240.99253498377522" x1="420.03563046129335" style="" class="link"></line><circle cy="437.1135698663754" cx="363.67369495698506" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>1</title></circle><circle cy="301.7265836121329" cx="415.433888783972" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>2</title></circle><circle cy="357.1048219269072" cx="420.7033923502205" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>3</title></circle><circle cy="225.06717303637407" cx="474.31250793546167" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>4</title></circle><circle cy="450.23948328191614" cx="332.64411615847945" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>5</title></circle><circle cy="249.84562941120126" cx="491.2116161505519" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>6</title></circle><circle cy="417.5568730486872" cx="332.9618310843629" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>7</title></circle><circle cy="330.5684829162105" cx="442.3196102118914" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>8</title></circle><circle cy="223.91071228317062" cx="284.56506953234066" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>9</title></circle><circle cy="372.53036326967265" cx="458.97424156329174" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>10</title></circle><circle cy="281.165798647713" cx="358.1718268042385" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>11</title></circle><circle cy="231.69597216446732" cx="359.22844236407167" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>12</title></circle><circle cy="365.17613902454286" cx="531.9632538150457" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>13</title></circle><circle cy="303.34023110057694" cx="304.95168484035366" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>14</title></circle><circle cy="220.46857978735366" cx="309.1570041377861" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>15</title></circle><circle cy="208.2831040072831" cx="386.43612198356493" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>16</title></circle><circle cy="202.53814765836069" cx="408.482617559413" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>17</title></circle><circle cy="334.2829922117852" cx="512.0361665552143" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>18</title></circle><circle cy="280.2326924556734" cx="426.69206859384013" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>19</title></circle><circle cy="306.4298910399359" cx="491.4805359203696" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>20</title></circle><circle cy="281.088320049427" cx="288.30992097034306" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>21</title></circle><circle cy="328.51258577072736" cx="533.2600889494781" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>22</title></circle><circle cy="273.3367429934316" cx="407.2166276248844" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>23</title></circle><circle cy="250.53407109418407" cx="281.92690985782417" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>24</title></circle><circle cy="282.9565406338392" cx="327.0492492226791" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>25</title></circle><circle cy="355.7111492173187" cx="497.6997091504309" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>26</title></circle><circle cy="256.6008755974957" cx="387.915323755394" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>27</title></circle><circle cy="240.99253498377522" cx="420.03563046129335" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>28</title></circle><circle cy="262.0991910209432" cx="449.86358307052495" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>29</title></circle><circle cy="256.30840014724583" cx="322.3263247547644" style="fill: rgb(31, 119, 180);" r="5" class="node"><title>30</title></circle></svg><a href="file:///home/vara/Documents/Community-Detection-in-Social-Network/Experiments/networkX/project/networkEvolution/network1.json.html">Next</a></body></html>

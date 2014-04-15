@@ -1,0 +1,9 @@
+#!/bin/bash
+ 
+EXT=png
+OPT="vcodec=mpeg4:vqscale=2:vhq:v4mv:trell:autoaspect"
+FPS=15
+PREFIX="images/image"
+OUTPUT="dynamicGraph.avi"
+ 
+mencoder "mf://$PREFIX*.$EXT" -mf fps=$FPS:type=$EXT -ovc lavc -lavcopts $OPT -o $OUTPUT -nosound -vf scale

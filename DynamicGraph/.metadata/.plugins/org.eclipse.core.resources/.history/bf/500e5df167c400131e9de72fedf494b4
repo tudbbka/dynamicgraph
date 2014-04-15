@@ -1,0 +1,60 @@
+import java.util.Set;
+import java.util.HashSet;
+
+public class GraphData {
+	private Set<String> nodes;
+	private Set<Edge> edges;
+	
+	public GraphData(){
+		nodes = new HashSet<String>();
+		edges = new HashSet<Edge>();
+	}
+	
+	public Set<String> getNodes(){
+		return nodes;
+	}
+	
+	public Set<Edge> getEdges(){
+		return edges;
+	}
+	
+	public void addNode(String newNode){
+		nodes.add(newNode);
+	}
+	
+	public void removeNode(String delNode){
+		nodes.remove(delNode);
+	}
+	
+	public void addEdge(String nodeFrom, String nodeTo){
+		edges.add(new Edge(nodeFrom, nodeTo));
+	}
+	
+	public void removeEdge(String nodeFrom, String nodeTo){
+		edges.remove(new Edge(nodeFrom, nodeTo));
+	}
+} // end class GraphData
+
+class Edge{
+	private String nodeFrom;
+	private String nodeTo;
+	
+	public Edge(String nodeFrom, String nodeTo){
+		this.nodeFrom = nodeFrom;
+		this.nodeTo = nodeTo;
+	}
+	
+	public String getNodeFrom(){
+		return nodeFrom;
+	}
+	
+	public String getNodeTo(){
+		return nodeTo;
+	}
+	
+	public Boolean equals(Edge cmp){
+		if(cmp.getNodeFrom().equalsIgnoreCase(nodeFrom) && cmp.getNodeTo().equalsIgnoreCase(nodeTo))
+			return true;
+		return false;
+	}
+} // end class Edge

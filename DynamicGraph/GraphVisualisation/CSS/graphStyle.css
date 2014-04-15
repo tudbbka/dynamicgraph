@@ -1,0 +1,16 @@
+graph { 
+	padding: 50px;
+}
+node {
+   fill-color: DarkBlue;
+}
+node.new {
+    fill-color: orange;
+}
+
+edge{
+	fill-color:DarkBlue;
+}
+edge.new{
+	fill-color: orange;
+}

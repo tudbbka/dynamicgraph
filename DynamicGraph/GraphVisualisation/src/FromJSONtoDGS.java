@@ -32,10 +32,10 @@ public class FromJSONtoDGS {
 	public static void main(String[] args) throws Exception {
 		
 		// Specify the number of snapshots stored as JSON files below
-		int numOfJSONFiles = 10;
+		int numOfJSONFiles = 21;
 		
 		// Relative folder and and prefix of the JSON files
-		String filePrefix = "networkEvolution/network";
+		String filePrefix = "../GraphGeneration/networkEvolution/network";
 		String fileSuffix = ".json";
 		String filejson="";
 		String dgsString = "";
